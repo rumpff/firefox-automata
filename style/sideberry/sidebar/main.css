@@ -1,0 +1,92 @@
+#root.root {--tabs-count-font: 0.5625rem "FOT-Rodin Pro B", sans-serif;}
+#root.root {--tabs-margin: 3px;}
+#root.root {--tabs-indent: 12px;}
+#root.root {--tabs-inner-gap: 5px;}
+
+#root.root {--tabs-activated-fg: rgb(215, 209, 187);}
+#root.root {--tabs-font: 0.9375rem "FOT-Rodin Pro DB", sans-serif;}
+
+#root.root {--general-border-radius: 0px;}
+#root.root {--bookmarks-folder-font: 0.9375rem "FOT-Rodin Pro B", sans-serif;}
+#root.root {--bookmarks-bookmark-font: 0.9375rem "FOT-Rodin Pro DB", sans-serif;}
+#root.root {--ctx-menu-font: 0.875rem "FOT-Rodin Pro M",sans-serif;}
+
+/* Nier Style tab decoration */
+.AnimatedTabList {
+  padding-top: 8px;
+}
+
+.Tab {
+	margin-bottom: 8px;
+	margin-left: 0px;
+	margin-right: 0px;
+	
+	width: 100%;
+}
+
+.Tab .body {
+	padding-left: 4px;
+	box-shadow: inset 0px 0 rgb(82, 80, 68);
+
+	transition: box-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1), background 0.1s linear;
+}
+
+.Tab:hover .body {
+	 background: rgb(168, 164, 138);
+}
+
+.Tab[data-active="true"] .body,
+.Tab[data-selected="true"] .body {
+	  background: rgb(168, 164, 138);
+		box-shadow: inset 300px 0 rgb(82, 80, 68);
+}
+
+.Tab[data-selected="true"] .title {
+	color: var(--tabs-activated-fg);
+}
+
+.Tab .body::before {
+	content: '';
+	position: absolute;
+	height: 2px;
+	left: 0;
+  top: 50%;
+	width: 100%;
+	background-color: #0000 !important;
+
+	box-shadow: 0 -17px 0 0 rgba(82, 80, 6, 0),
+							0 15px 0 0 rgba(82, 80, 68, 0);
+
+	transition: none 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+	transition-property: width, box-shadow;
+}
+
+.Tab .title {
+	transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.Tab[data-active="true"] .body::before {
+	width: 100%;
+
+	box-shadow: 0 -21px 0 0 rgb(82, 80, 68),
+							0 19px 0 0 rgb(82, 80, 68);
+}
+
+/*
+.Tab .fav {
+	box-shadow: inset 100px 0 rgb(82, 80, 68);
+	transition: box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.Tab[data-active="true"] .fav {
+	box-shadow: inset 100px 0 rgb(215, 209, 187);
+}
+
+.Tab .fav .fav-icon {
+	opacity: 0;
+}
+*/
+
+.Tab .fav .fav-icon {
+	filter: grayscale(100%) sepia(100%);
+}
