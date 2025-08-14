@@ -1,44 +1,124 @@
+#root.root {--frame-bg: rgb(201, 196, 174);}
+#root.root {--toolbar-bg: rgb(201, 196, 174);}
+#root.root {--toolbar-el-overlay-hover-bg: rgb(82, 80, 68);}
+#root.root {--nav-btn-len-margin: -2px;}
+#root.root {--nav-btn-fg: rgb(76, 74, 62);}
+#root.root {--nav-btn-accent: rgb(76, 74, 62);}
+#root.root {--frame-fg: rgb(76, 74, 62);}
+#root.root {--nav-hidden-btn-border-radius: 0px;}
+#root.root {--nav-btn-active-shadow: ;}
+#root.root {--nav-btn-border-radius: 0px;}
+#root.root {--tabs-margin: 10px;}
+#root.root {--tabs-height: 32px;}
+#root.root {--tabs-border-radius: 0px;}
+#root.root {--tabs-inner-gap: 10px;}
+#root.root {--tabs-lvl-opacity: 0.3;}
 #root.root {--tabs-count-font: 0.5625rem "FOT-Rodin Pro B", sans-serif;}
-#root.root {--tabs-margin: 3px;}
 #root.root {--tabs-indent: 12px;}
-#root.root {--tabs-inner-gap: 5px;}
-
 #root.root {--tabs-activated-fg: rgb(215, 209, 187);}
 #root.root {--tabs-font: 0.9375rem "FOT-Rodin Pro DB", sans-serif;}
-
 #root.root {--general-border-radius: 0px;}
-#root.root {--bookmarks-folder-font: 0.9375rem "FOT-Rodin Pro B", sans-serif;}
+#root.root {--bookmarks-folder-font: 0.9375rem "FOT-Rodin Pro DB", sans-serif;}
 #root.root {--bookmarks-bookmark-font: 0.9375rem "FOT-Rodin Pro DB", sans-serif;}
 #root.root {--ctx-menu-font: 0.875rem "FOT-Rodin Pro M",sans-serif;}
 
-/* Nier Style tab decoration */
-.AnimatedTabList {
-  padding-top: 8px;
+#root {
+	--nier-color-light: 201, 196, 174;
+	--nier-color-dark: 82, 80, 68;
+	--nier-color-medium: 168, 164, 138;
+
+	--nier-transition-main: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+/* Nier Style tab decoration */
+.AnimatedTabList {
+  /* padding-top: 8px; -- missalignes drag/drop arrow */
+}
+
+/* -- Navbar -- */
+#nav_bar::before {
+	content: "";
+  position: absolute;
+  top: calc(100% + var(--general-margin));
+  left: 0;
+  width: 100%;
+  height: 2px;
+	
+	background-color: rgb(var(--nier-color-dark));
+}
+
+.NavigationBar .nav-item .len {
+	font-family: "FOT-Rodin Pro DB", sans-serif;
+}
+
+.NavigationBar .nav-item {
+	background-color: rgb(var(--nier-color-medium));
+	transition: background-color var(--nier-transition-main);
+}
+
+.NavigationBar .nav-item .icon {
+	transition: fill var(--nier-transition-main);
+}
+
+.NavigationBar .nav-item[data-active="true"] .icon,
+.NavigationBar .nav-item:hover .icon {
+	fill: rgb(var(--nier-color-light));
+}
+
+.NavigationBar .nav-item::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 0px;
+	
+	background-color: rgb(var(--nier-color-medium));
+
+	transition: none var(--nier-transition-main);
+	transition-property: height, background-color;
+}
+
+.NavigationBar .nav-item[data-active="true"]::after {
+  height: 6px;
+	
+	background-color: rgb(var(--nier-color-dark));
+}
+
+/* -- Tabs -- */
+
 .Tab {
-	margin-bottom: 8px;
 	margin-left: 0px;
 	margin-right: 0px;
 	
 	width: 100%;
 }
 
+.Tab::before {
+	content: '';
+	position: absolute;
+	height: calc(100% - 15px);
+	left: 0;
+  top: 0;
+	width: 100%;
+
+	background-color: ;
+}
+
 .Tab .body {
-	padding-left: 4px;
-	box-shadow: inset 0px 0 rgb(82, 80, 68);
+	box-shadow: inset 0px 0 rgb(var(--nier-color-dark));
 
 	transition: box-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1), background 0.1s linear;
 }
 
 .Tab:hover .body {
-	 background: rgb(168, 164, 138);
+	 background: rgb(var(--nier-color-medium));
 }
 
 .Tab[data-active="true"] .body,
 .Tab[data-selected="true"] .body {
 	  background: rgb(168, 164, 138);
-		box-shadow: inset 300px 0 rgb(82, 80, 68);
+		box-shadow: inset 300px 0 rgb(var(--nier-color-dark));
 }
 
 .Tab[data-selected="true"] .title {
@@ -55,27 +135,29 @@
 	background-color: #0000 !important;
 
 	box-shadow: 0 -17px 0 0 rgba(82, 80, 6, 0),
-							0 15px 0 0 rgba(82, 80, 68, 0);
+							0 15px 0 0 rgba(var(--nier-color-dark), 0);
 
-	transition: none 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+	transition: none var(--nier-transition-main);
 	transition-property: width, box-shadow;
-}
-
-.Tab .title {
-	transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .Tab[data-active="true"] .body::before {
 	width: 100%;
 
-	box-shadow: 0 -21px 0 0 rgb(82, 80, 68),
-							0 19px 0 0 rgb(82, 80, 68);
+	box-shadow: 0 -21px 0 0 rgb(var(--nier-color-dark)),
+							0 19px 0 0 rgb(var(--nier-color-dark));
 }
+
+.Tab .title {
+	transition: color var(--nier-transition-main);
+}
+
+
 
 /*
 .Tab .fav {
-	box-shadow: inset 100px 0 rgb(82, 80, 68);
-	transition: box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+	box-shadow: inset 100px 0 rgb(var(--nier-color-dark));
+	transition: box-shadow var(--nier-transition-main);
 }
 
 .Tab[data-active="true"] .fav {
