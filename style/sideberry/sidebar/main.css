@@ -1,3 +1,5 @@
+#root.root {--scroll-progress-height: 2px;}
+#root.root {--scroll-color: rgb(168, 164, 138);}
 #root.root {--frame-bg: rgb(201, 196, 174);}
 #root.root {--toolbar-bg: rgb(201, 196, 174);}
 #root.root {--toolbar-el-overlay-hover-bg: rgb(82, 80, 68);}
@@ -27,15 +29,44 @@
 	--nier-color-dark: 82, 80, 68;
 	--nier-color-medium: 168, 164, 138;
 
-	--nier-transition-main: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+	--nier-tabs-vertical-offset: 15px;
+	--nier-padding-scrollbar: 4px;
 }
 
-/* Nier Style tab decoration */
+#root[data-animations="slow"] {
+	--d-swipe: calc(var(--d-slow) * 1.833);
+	
+	--nier-transition-main: var(--d-slow) cubic-bezier(0.25, 1, 0.5, 1);
+	--nier-transition-barswipe: var(--d-swipe) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#root[data-animations="norm"] {
+	--d-swipe: calc(var(--d-norm) * 1.833);
+	
+	--nier-transition-main: var(--d-norm) cubic-bezier(0.25, 1, 0.5, 1);
+	--nier-transition-barswipe: var(--d-swipe) cubic-bezier(0.16, 1, 0.3, 1);
+}
+#root[data-animations="fast"] {
+	--d-swipe: calc(var(--d-fast) * 1.833);
+	
+	--nier-transition-main: var(--d-fast) cubic-bezier(0.25, 1, 0.5, 1);
+	--nier-transition-barswipe: var(--d-swipe) cubic-bezier(0.16, 1, 0.3, 1);
+}
+#root[data-animations="swift"] {
+	--d-swipe: calc(var(--d-swift) * 1.833);
+	
+	--nier-transition-main: var(--d-norm) cubic-bezier(0.25, 1, 0.5, 1);
+	--nier-transition-barswipe: var(--d-swift) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .AnimatedTabList {
-  /* padding-top: 8px; -- missalignes drag/drop arrow */
+  padding-top: var(--nier-tabs-vertical-offset); /* -- missalignes drag/drop arrow */
+}
+.pointer {
+	margin-top: var(--nier-tabs-vertical-offset);
 }
 
-/* -- Navbar -- */
+/* -- navbar -- */
 #nav_bar::before {
 	content: "";
   position: absolute;
@@ -79,19 +110,47 @@
 	transition-property: height, background-color;
 }
 
-.NavigationBar .nav-item[data-active="true"]::after {
+.Sidebar[data-nav-layout="horizontal"][data-density="compact"][data-nav-inline="true"] .NavigationBar .nav-item[data-active="true"]::after {
+  height: 2px;
+}
+
+.Sidebar[data-nav-layout="horizontal"][data-density="default"][data-nav-inline="true"] .NavigationBar .nav-item[data-active="true"]::after {
+  height: 2px;
+}
+
+.Sidebar[data-nav-layout="horizontal"][data-density="loose"][data-nav-inline="true"] .NavigationBar .nav-item[data-active="true"]::after {
   height: 6px;
-	
+}
+
+.NavigationBar .nav-item[data-active="true"]::after {
 	background-color: rgb(var(--nier-color-dark));
 }
 
-/* -- Tabs -- */
+/* -- global panel -- */
+#root[data-native-scrollbar="true"] .ScrollBox {
+	padding-right: var(--nier-padding-scrollbar);
+}
+#root[data-native-scrollbar="true"][data-native-scrollbars-left="true"] .ScrollBox {
+	padding-left: var(--nier-padding-scrollbar);
+	padding-right: 0;
+}
+
+/* -- tabs -- */
 
 .Tab {
 	margin-left: 0px;
 	margin-right: 0px;
 	
 	width: 100%;
+}
+
+.Sidebar[data-native-scrollbar="true"] .Tab .body {
+	width: calc(100% - (var(--nier-padding-scrollbar)*2));
+}
+
+.Sidebar[data-native-scrollbar="true"][data-native-scrollbars-left="true"] .Tab .body {
+	margin-left: auto; 
+	margin-right: 0;
 }
 
 .Tab::before {
@@ -101,14 +160,12 @@
 	left: 0;
   top: 0;
 	width: 100%;
-
-	background-color: ;
 }
 
 .Tab .body {
 	box-shadow: inset 0px 0 rgb(var(--nier-color-dark));
 
-	transition: box-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1), background 0.1s linear;
+	transition: box-shadow var(--nier-transition-barswipe), background 0.1s linear;
 }
 
 .Tab:hover .body {
@@ -141,6 +198,18 @@
 	transition-property: width, box-shadow;
 }
 
+.Tab .body::after {
+	/* match tab level indicator to block instead of text */
+  height: calc(var(--tabs-height) + var(--tabs-margin) + 6px);
+
+	opacity: 1;
+	width: 2px;
+
+/* replace box shadow color with --nier-color-medium */
+	--tabs-normal-fg: rgb(168, 164, 138); 
+}
+
+
 .Tab[data-active="true"] .body::before {
 	width: 100%;
 
@@ -152,7 +221,11 @@
 	transition: color var(--nier-transition-main);
 }
 
-
+/* container indicator */
+.Tab[data-pin="false"] .ctx {
+  width: 6px;
+	left: 0; /* move over to left since we created extra spacing there */
+}
 
 /*
 .Tab .fav {
