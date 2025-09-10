@@ -219,66 +219,83 @@
 	transition: width var(--nier-transition-barswipe);
 }
 
-.Tab[data-active="true"]::before,
-.Tab[data-selected="true"]::before {
-	width: 100%;
-}
-
 /* fix bg with tab indentation */
 .Tab::before {
 	/* indentation stops at 16, so anything not in the list should be 16 */
   margin-left: calc(var(--tabs-indent)*16);
+	width: calc(100% - var(--tabs-indent)*16);
 }
 .Tab[data-lvl="0"]::before {
   margin-left: 0;
+	width: 100%;
 }
 .Tab[data-lvl="1"]::before {
   margin-left: calc(var(--tabs-indent)*1);
+	width: calc(100% - var(--tabs-indent)*1);
 }
 .Tab[data-lvl="2"]::before {
   margin-left: calc(var(--tabs-indent)*2);
+	width: calc(100% - var(--tabs-indent)*2);
 }
 .Tab[data-lvl="3"]::before {
   margin-left: calc(var(--tabs-indent)*3);
+	width: calc(100% - var(--tabs-indent)*3);
 }
 .Tab[data-lvl="4"]::before {
   margin-left: calc(var(--tabs-indent)*4);
+	width: calc(100% - var(--tabs-indent)*4);
 }
 .Tab[data-lvl="5"]::before {
   margin-left: calc(var(--tabs-indent)*5);
+	width: calc(100% - var(--tabs-indent)*5);
 }
 .Tab[data-lvl="6"]::before {
   margin-left: calc(var(--tabs-indent)*6);
+	width: calc(100% - var(--tabs-indent)*6);
 }
 .Tab[data-lvl="7"]::before {
   margin-left: calc(var(--tabs-indent)*7);
+	width: calc(100% - var(--tabs-indent)*7);
 }
 .Tab[data-lvl="8"]::before {
   margin-left: calc(var(--tabs-indent)*8);
+	width: calc(100% - var(--tabs-indent)*8);
 }
 .Tab[data-lvl="9"]::before {
   margin-left: calc(var(--tabs-indent)*9);
+	width: calc(100% - var(--tabs-indent)*9);
 }
 .Tab[data-lvl="10"]::before {
   margin-left: calc(var(--tabs-indent)*10);
+	width: calc(100% - var(--tabs-indent)*10);
 }
 .Tab[data-lvl="11"]::before {
   margin-left: calc(var(--tabs-indent)*11);
+	width: calc(100% - var(--tabs-indent)*11);
 }
 .Tab[data-lvl="12"]::before {
   margin-left: calc(var(--tabs-indent)*12);
+	width: calc(100% - var(--tabs-indent)*12);
 }
 .Tab[data-lvl="13"]::before {
   margin-left: calc(var(--tabs-indent)*13);
+	width: calc(100% - var(--tabs-indent)*13);
 }
 .Tab[data-lvl="14"]::before {
   margin-left: calc(var(--tabs-indent)*14);
+	width: calc(100% - var(--tabs-indent)*14);
 }
 .Tab[data-lvl="15"]::before {
   margin-left: calc(var(--tabs-indent)*15);
+	width: calc(100% - var(--tabs-indent)*15);
 }
 .Tab[data-lvl="16"]::before {
   margin-left: calc(var(--tabs-indent)*16);
+	width: calc(100% - var(--tabs-indent)*16);
+}
+
+.Tab[data-active="false"][data-selected="false"]::before {
+	width: 0%;
 }
 
 .Tab .body {
