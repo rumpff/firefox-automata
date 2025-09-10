@@ -30,6 +30,7 @@
 	--nier-color-medium: 168, 164, 138;
 
 	--nier-tabs-vertical-offset: 15px;
+	--nier-tabs-size: 100%;
 	--nier-padding-scrollbar: 4px;
 }
 
@@ -187,8 +188,12 @@
 .Tab {
 	margin-left: 0px;
 	margin-right: 0px;
-	
 	width: 100%;
+	height: var(--tabs-height);	
+
+	padding-bottom: 0;
+  margin-bottom: var(--tabs-margin);
+
 }
 
 .Sidebar[data-native-scrollbar="true"] .Tab .body {
@@ -203,16 +208,83 @@
 .Tab::before {
 	content: '';
 	position: absolute;
-	height: calc(100% - 15px);
+	height: var(--nier-tabs-size);
 	left: 0;
   top: 0;
+	width: 0%;
+
+	background-color: rgb(var(--nier-color-dark));
+	z-index: 1;
+
+	transition: width var(--nier-transition-barswipe);
+}
+
+.Tab[data-active="true"]::before,
+.Tab[data-selected="true"]::before {
 	width: 100%;
+}
+
+/* fix bg with tab indentation */
+.Tab::before {
+	/* indentation stops at 16, so anything not in the list should be 16 */
+  margin-left: calc(var(--tabs-indent)*16);
+}
+.Tab[data-lvl="0"]::before {
+  margin-left: 0;
+}
+.Tab[data-lvl="1"]::before {
+  margin-left: calc(var(--tabs-indent)*1);
+}
+.Tab[data-lvl="2"]::before {
+  margin-left: calc(var(--tabs-indent)*2);
+}
+.Tab[data-lvl="3"]::before {
+  margin-left: calc(var(--tabs-indent)*3);
+}
+.Tab[data-lvl="4"]::before {
+  margin-left: calc(var(--tabs-indent)*4);
+}
+.Tab[data-lvl="5"]::before {
+  margin-left: calc(var(--tabs-indent)*5);
+}
+.Tab[data-lvl="6"]::before {
+  margin-left: calc(var(--tabs-indent)*6);
+}
+.Tab[data-lvl="7"]::before {
+  margin-left: calc(var(--tabs-indent)*7);
+}
+.Tab[data-lvl="8"]::before {
+  margin-left: calc(var(--tabs-indent)*8);
+}
+.Tab[data-lvl="9"]::before {
+  margin-left: calc(var(--tabs-indent)*9);
+}
+.Tab[data-lvl="10"]::before {
+  margin-left: calc(var(--tabs-indent)*10);
+}
+.Tab[data-lvl="11"]::before {
+  margin-left: calc(var(--tabs-indent)*11);
+}
+.Tab[data-lvl="12"]::before {
+  margin-left: calc(var(--tabs-indent)*12);
+}
+.Tab[data-lvl="13"]::before {
+  margin-left: calc(var(--tabs-indent)*13);
+}
+.Tab[data-lvl="14"]::before {
+  margin-left: calc(var(--tabs-indent)*14);
+}
+.Tab[data-lvl="15"]::before {
+  margin-left: calc(var(--tabs-indent)*15);
+}
+.Tab[data-lvl="16"]::before {
+  margin-left: calc(var(--tabs-indent)*16);
 }
 
 .Tab .body {
 	box-shadow: inset 0px 0 rgb(var(--nier-color-dark));
-
 	transition: box-shadow var(--nier-transition-barswipe), background 0.1s linear;
+	height: var(--nier-tabs-size);
 }
 
 .Tab:hover .body {
@@ -222,7 +294,8 @@
 .Tab[data-active="true"] .body,
 .Tab[data-selected="true"] .body {
 	  background: rgb(168, 164, 138);
-		box-shadow: inset 300px 0 rgb(var(--nier-color-dark));
+		/* box-shadow: inset 100px 0 rgb(var(--nier-color-dark)); */
+		box-shadow: none;
 }
 
 .Tab[data-selected="true"] .title {
