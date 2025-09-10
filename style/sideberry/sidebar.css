@@ -347,11 +347,15 @@
 	left: 0; /* move over to left since we created extra spacing there */
 }
 
+/* -- styled favicons --- */
+
 /* Uncomment for squares instead of favicons */
 /*
-.Tab .fav { box-shadow: inset 100px 0 rgb(var(--nier-color-dark));transition: box-shadow var(--nier-transition-main); } .Tab[data-active="true"] .fav { box-shadow: inset 100px 0 rgb(215, 209, 187) } .Tab .fav .fav-icon { opacity: 0;}
+.Tab .fav, .BookmarkNode .fav, .HistoryPanel .item .fav { box-shadow: inset 100px 0 rgb(var(--nier-color-dark));transition: box-shadow var(--nier-transition-main); } .Tab[data-active="true"] .fav { box-shadow: inset 100px 0 rgb(215, 209, 187) } .Tab .fav .fav-icon, .BookmarkNode .fav > img, .HistoryPanel .item .fav > img { opacity: 0;}
 */
 
-.Tab .fav .fav-icon {
+.Tab .fav .fav-icon,
+.BookmarkNode .fav > img,
+.HistoryPanel .item .fav > img {
 	filter: grayscale(100%) sepia(100%);
 }
