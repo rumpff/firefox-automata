@@ -162,7 +162,7 @@
 }
 
 /* -- search bar -- */
-.SearchBar {
+.SearchBar[data-showed="true"] {
 	margin-top: var(--nier-tabs-vertical-offset);
 }
 .SearchBar, .SearchBar::before {
