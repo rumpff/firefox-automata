@@ -163,7 +163,7 @@
 
 /* -- search bar -- */
 .SearchBar {
-	margin-top: 6px;
+	margin-top: var(--nier-tabs-vertical-offset);
 }
 .SearchBar, .SearchBar::before {
 	transition: background-color var(--nier-transition-main);
