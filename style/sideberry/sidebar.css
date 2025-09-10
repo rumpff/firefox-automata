@@ -160,6 +160,28 @@
 	padding-right: 0;
 }
 
+/* -- search bar -- */
+.SearchBar {
+	margin-top: 6px;
+}
+.SearchBar, .SearchBar::before {
+	transition: background-color var(--nier-transition-main);
+}
+.SearchBar[data-focused="true"]{
+	background-color: rgb(var(--nier-color-medium));
+}
+.SearchBar[data-focused="true"]::before {
+	box-shadow: none;
+	background-color: rgb(var(--nier-color-medium));
+}
+
+.SearchBar .placeholder {
+	font-family: "FOT-Rodin Pro DB", sans-serif;
+}
+.SearchBar .input {
+	font-family: "FOT-Rodin Pro DB", sans-serif;
+}
+
 /* -- tabs -- */
 
 .Tab {
@@ -252,19 +274,9 @@
 	left: 0; /* move over to left since we created extra spacing there */
 }
 
+/* Uncomment for squares instead of favicons */
 /*
-.Tab .fav {
-	box-shadow: inset 100px 0 rgb(var(--nier-color-dark));
-	transition: box-shadow var(--nier-transition-main);
-}
-
-.Tab[data-active="true"] .fav {
-	box-shadow: inset 100px 0 rgb(215, 209, 187);
-}
-
-.Tab .fav .fav-icon {
-	opacity: 0;
-}
+.Tab .fav { box-shadow: inset 100px 0 rgb(var(--nier-color-dark));transition: box-shadow var(--nier-transition-main); } .Tab[data-active="true"] .fav { box-shadow: inset 100px 0 rgb(215, 209, 187) } .Tab .fav .fav-icon { opacity: 0;}
 */
 
 .Tab .fav .fav-icon {
