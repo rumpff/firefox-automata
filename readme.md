@@ -25,7 +25,7 @@ _firefox theme with [sidebery](https://github.com/mbnuqw/sidebery) for vertical 
 - Right click next to url bar and click Customize Toolbar. Drag the Sidebars icon left corner to the center. Click Done 
 - Click the sidebery extension icon to open the tabs sidebar. (shortcut might be `F1` or `Ctrl+E`)
 - Open new tab, click customize bottom right, Upload an image, select `/img/new-tab.png`
-
+- Enjoy your new firefox theme. Create an issue if anything is broken. Glory to Mankind.
 ## Customization intrsuctions
 - Open sidebery settings, tweak the following to your liking:
 - Navigation bar:
